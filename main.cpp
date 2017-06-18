@@ -163,6 +163,7 @@ int main()
         }
         //команда start
         case 3: { if (mode == SIM) { std::cerr << "Simulation alredy running!" << std::endl; break;}
+            if (simulation.Get_Sim_dT() == 0) { std::cerr << "Simulation time not set\n"; break;}
             mode = SIM;
             //создаем отдеьный поток для работы симуляции
             sim_thread = new std::thread(&Simulation::Start,std::ref(simulation));
