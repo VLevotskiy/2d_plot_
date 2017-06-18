@@ -52,6 +52,11 @@ void Motor::Update_position(const float dT) {
 }
 
 void Motor::Update_velocity(const float dT) {
-    V += A_aups*dT;
-    if (V >= S_max_aups) {V = S_max_aups; A_aups = 0;}
+    if (TP < P) {
+        V -= A_aups*dT;
+    }
+    else {
+        V += A_aups*dT;
+    }
+    if (abs(V) >= S_max_aups) {V = V < 0 ? -1 * S_max_aups : S_max_aups; A_aups = 0;}
 }

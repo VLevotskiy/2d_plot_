@@ -1,6 +1,7 @@
 #include "simulation.h"
 
 Simulation::Simulation(){
+    Sim_dT = 0;
     Simulation_started = false;
 }
 
