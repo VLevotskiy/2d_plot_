@@ -142,6 +142,10 @@ int main()
                 std::string to_float = words[2].substr(3);
                 //приводим результат к типу float
                 float value = std::stof(to_float);
+                if (value <= 0) {
+                    std::cerr << "Error! Simulation time <= 0\n";
+                    break;
+                }
                 simulation.Set_Sim_dT(value);
                 break;
             }
@@ -153,6 +157,10 @@ int main()
                 }
                 std::string to_float = words[2].substr(3);
                 float value = std::stof(to_float);
+                if (value <= 0) {
+                    std::cerr << "Error! Logging time <= 0\n";
+                    break;
+                }
                 simulation.Set_Log_dT(value);
                 break;
             }
