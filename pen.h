@@ -11,9 +11,9 @@ private:
     bool toggled;                       //состояние пера
 public:
     Pen();
-    bool Attatch_Motor_x(std::shared_ptr<Motor>&);      //прикрепить мотор к оси х
-    bool Attatch_Motor_y(std::shared_ptr<Motor>&);      //прикрепить мотор к оси y
-    void Set_Toggle(bool);                              //установить состояние пера
+    bool Attatch_Motor_x(const std::shared_ptr<Motor>&);      //прикрепить мотор к оси х
+    bool Attatch_Motor_y(const std::shared_ptr<Motor>&);      //прикрепить мотор к оси y
+    void Set_Toggle(bool state);                              //установить состояние пера
 
     float Get_pos_x() const;
     float Get_pos_y() const;

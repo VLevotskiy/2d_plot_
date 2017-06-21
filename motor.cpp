@@ -17,9 +17,9 @@ void Motor::Set_TP(const float value) {
     }
 }
 
-void Motor::Set_P(const float value){
+/*void Motor::Set_P(const float value){
     P = value;
-}
+}*/
 
 void Motor::Set_V(const float value){
     V = value;
@@ -45,7 +45,7 @@ float Motor::Get_V() const {
 }
 
 void Motor::Update_position(const float dT) {
-    if ((P < TP && V >0) || (P > TP && V < 0)) {
+    if ( P != TP) {
         P += V*dT;
     }
     else {V =0; A_aups = 0;}

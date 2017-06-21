@@ -4,6 +4,8 @@
 #include <ctime>
 #include <iostream>
 #include <thread>
+#include <chrono>
+#include <windows.h>
 #include "motor.h"
 #include "pen.h"
 #include "logger.h"
@@ -18,15 +20,15 @@ private:
 public:
     Simulation();
     void AddMotor(const std::string& motor_name);                      //добавить мотор
-    void AddPen(const std::string& pen_name);                           //добавить перо
-    void Attatch(std::string& motor_name,std::string& pen_name,std::string& axis);   //прикрепить моторк к оси пера
+    void AddPen(const std::string& pen_name);                          //добавить перо
+    void Attatch(std::string& motor_name, std::string& pen_name,std::string& axis);   //прикрепить моторк к оси пера
     void Start();                                           //заупстить симуляцию
     void Stop();                                            //остановить симуляцию
 
     void Set_Sim_dT(const float);
     void Set_Log_dT(const float);
-    void Set_motor_param(std::string& motor_name, char param, float val);   //Установка параметра param мотора motor_name в значение val
-    void Toggle_pen(std::string&,bool);
+    void Set_motor_param(const std::string& motor_name, char parameter, float value);   //Установка параметра param мотора motor_name в значение val
+    void Toggle_pen(const std::string&,bool);
 
     float Get_Sim_dT() const;
     float Get_Log_dT() const;

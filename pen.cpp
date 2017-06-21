@@ -3,7 +3,7 @@
 Pen::Pen() : toggled(true){
 }
 
-bool Pen::Attatch_Motor_x(std::shared_ptr<Motor>& ptr) {
+bool Pen::Attatch_Motor_x(const std::shared_ptr<Motor>& ptr) {
     if (!p_motor_x) {
         p_motor_x = ptr;
         return true;
@@ -11,7 +11,7 @@ bool Pen::Attatch_Motor_x(std::shared_ptr<Motor>& ptr) {
     return false;
 }
 
-bool Pen::Attatch_Motor_y(std::shared_ptr<Motor>& ptr) {
+bool Pen::Attatch_Motor_y(const std::shared_ptr<Motor> &ptr) {
     if (!p_motor_y) {
         p_motor_y = ptr;
         return true;

@@ -10,16 +10,16 @@ private:
     float TP;           //целевая позиция
     float P;            //текущая позиция
     float V;            //текущая скорость
+    //void Set_P(const float);
 public:
     Motor();
-    void Set_S_max_aups(const float);
-    void Set_A_aups(const float);
-    void Set_TP(const float);
-    void Set_P(const float);
-    void Set_V(const float);
+    void Set_S_max_aups(const float value);
+    void Set_A_aups(const float value);
+    void Set_TP(const float value);
+    void Set_V(const float value);
 
-    void Update_position(const float);  //Вычисление текущей позиции
-    void Update_velocity(const float);  //Вычисление текущей скорости
+    void Update_position(const float time);  //Вычисление текущей позиции
+    void Update_velocity(const float time);  //Вычисление текущей скорости
 
     float Get_S_max_aups() const;
     float Get_A_aups() const;

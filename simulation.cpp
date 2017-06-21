@@ -39,28 +39,27 @@ void Simulation::Set_Log_dT(const float val) {
     logger.Set_dT(val);
 }
 
-void Simulation::Set_motor_param(std::string& motor_name,char param, float value){
+void Simulation::Set_motor_param(const std::string &motor_name, char parameter, float value){
     auto motor_it = motors.find(motor_name);
     if (motor_it == motors.end()) {
         throw std::string("Motor with name " +  motor_name + "  not found\n");
         return;
     }
 
-    switch(param){
+    switch(parameter){
     case 'S': {motor_it->second->Set_S_max_aups(value); break;}
     case 'P': {motor_it->second->Set_TP(value);         break;}
     case 'A': {motor_it->second->Set_A_aups(value);     break;}
-    default : {throw std::string("Unknow motor param " + param); break;}
+    default : {throw std::string("Unknow motor param " + parameter); break;}
     }
 
 }
 
-void Simulation::Toggle_pen(std::string& pen_name,bool state){
+void Simulation::Toggle_pen(const std::string &pen_name, bool state){
 
     auto pen_it = pens.find(pen_name);
     if (pen_it == pens.end()) { throw std::string("Pen with name " + pen_name + "  not found\n"); return;}
     pen_it->second->Set_Toggle(state);
-    std::cout << pen_it->second->isToggled() << std::endl;
 }
 
 
@@ -118,8 +117,8 @@ void Simulation::Start() {
     log_thread.detach();
     //симуляция. Переменная Simulation_started сбрасывается вызовов методом Simulation::Stop() из родительского потока
     while (Simulation_started != false) {
-        clock_t end_time = clock() + Sim_dT * CLOCKS_PER_SEC ;  // время завершения
-        while (clock() < end_time);
+        //clock_t end_time = clock() + Sim_dT * CLOCKS_PER_SEC ;  // время завершения
+        std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(Sim_dT*CLOCKS_PER_SEC)));
         for (auto i = motors.begin(); i != motors.end(); ++i) {
             i->second->Update_velocity(Sim_dT);
             i->second->Update_position(Sim_dT);
