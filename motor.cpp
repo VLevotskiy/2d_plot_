@@ -45,10 +45,10 @@ float Motor::Get_V() const {
 }
 
 void Motor::Update_position(const float dT) {
-    if ( P != TP) {
+    if ( (P < TP && V > 0) || (P > TP && V < 0)) {
         P += V*dT;
     }
-    else {V =0; A_aups = 0;}
+    else if (P == TP) {V =0; A_aups = 0;}
 }
 
 void Motor::Update_velocity(const float dT) {
@@ -58,5 +58,5 @@ void Motor::Update_velocity(const float dT) {
     else {
         V += A_aups*dT;
     }
-    if (abs(V) >= S_max_aups) {V = V < 0 ? -1 * S_max_aups : S_max_aups; A_aups = 0;}
+    if (abs(V) >= S_max_aups) {V = TP < P ? -1 * S_max_aups : S_max_aups; A_aups = 0;}
 }

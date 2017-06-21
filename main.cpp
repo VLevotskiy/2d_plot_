@@ -14,7 +14,7 @@ const int NUM_OF_SET_COMMANDS = 4;
 const int NUM_OF_CREATE_COMMANDS = 2;
 
 // Возможные команды
-const std::string commands_list_1[NUM_OF_COMMANDS_1] = {"create", "attatch", "set", "start", "stop"};
+const std::string commands_list_1[NUM_OF_COMMANDS_1] = {"create", "attach", "set", "start", "stop"};
 const std::string commands_list_2[NUM_OF_COMMANDS_2] = {"motor", "pen", "sim", "log"};
 const std::string create_commands_list[NUM_OF_CREATE_COMMANDS] = {"motor", "pen"};
 const std::string set_commands_list[NUM_OF_SET_COMMANDS] = {"motor", "pen","sim","log"};
@@ -112,7 +112,7 @@ int main()
                 std::string motor_name = words[2];
                 std::string to_float = words[3].substr(2);
                 float value = std::stof(to_float);
-                if ((mode == CONF && words[3][0] != 'P') || (words[3][0] == 'P' && mode ==SIM)){
+                if ((mode == CONF && words[3][0] != 'P') || (mode ==SIM)){
                     simulation.Set_motor_param(motor_name,words[3][0],value);
                 }
                 else {

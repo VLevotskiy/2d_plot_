@@ -9,7 +9,7 @@ void Logger::Add_Pen(std::string pen_name,std::shared_ptr<Pen>& new_pen) {
     std::string file_name = pen_name + ".log";
     pens_ptrs.push_back(new_pen);
     logs.emplace_back(std::make_shared<std::ofstream>(std::ofstream(file_name)));
-    log_state.push_back(true);
+    log_state.push_back(new_pen->isToggled());
 }
 
 void Logger::Set_dT(const float value){
@@ -29,7 +29,7 @@ void Logger::Start(){
             if (pens_ptrs.at(i)->isToggled()){
                 *(logs.at(i)) << sim_time << "; ";
                 *(logs.at(i)) << pens_ptrs.at(i)->Get_pos_x() << "; ";
-                *(logs.at(i))<< pens_ptrs.at(i)->Get_pos_y() << "\n";
+                *(logs.at(i)) << pens_ptrs.at(i)->Get_pos_y() << "\n";
                 //logs.at(i)->operator<< ("\n");
                 log_state.at(i) = true;
             }
